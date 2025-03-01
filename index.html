@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Student Dashboard</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="responsive.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="script2.js"></script>
+    </head>
+
+    <body>
+         <header>
+            <div class="navbar">
+                <h1>Genius Perfomance Analysis</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#input">Input Details</a></li>
+                        <li><a href="#display">Display Details</a></li>
+                        <li><a href="#statistics">Stats</a></li>
+                        <li><a href="#achievements-section">Achivements</a></li>
+                        <li><a href="#goal-setting">Goal Setting</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <!-- Input Section -->
+            <section id="input">
+                <h2>INPUT ACADEMIC DETAILS</h2>
+                <hr>
+                <div class="container-input">
+                    <div class="form">
+                        <form id="module-form">
+                            <input type="text" id="module-name" placeholder="Course name" required autocomplete="off">
+                            <input type="text" id="year" placeholder="Academic Year" required autocomplete="off">
+                            <input type="text" id="part" placeholder="Part" required autocomplete="off">
+                            <input type="text" id="semester" placeholder="Semester" required autocomplete="off">
+                            <input type="number" id="mark" placeholder="Mark" required autocomplete="off">
+                            <input type="text" id="grade" placeholder="Classification (1 / 2.1 / 2.2 / P / F)" required autocomplete="off">
+                            <button id="add-module-btn">Add Module</button>
+                        </form>
+                    </div>
+                    <div class="image">
+                        <img src="bak2.jpg" class="pic">
+                    </div>
+                </div>
+            </section>  
+
+               <!-- Display Section -->
+                <section id="display">
+                    <h2>ACADEMIC DETAILS</h2>
+                    <hr>
+                    <table id="marks-table">
+                        <thead>
+                            <tr>
+                                <th>Course Name</th>
+                                <th>Academic Year</th>
+                                <th>Part</th>
+                                <th>Semester</th>
+                                <th>Mark</th>
+                                <th>Classification</th>
+                                <th>Actions</th> 
+                            </tr>
+                        </thead>
+                        <tbody id="module-table-body">
+                            <!-- Dynamic table from JS -->
+                        </tbody>
+                    </table>
+                    <button onclick="downloadCSV()">Download CSV</button>
+                </section>
+
+            <!-- Statistics Section -->
+            <section id="statistics">
+                <div class="forh2">
+                        <h2>STATISTICS</h2>
+                        <hr>
+                </div>
+                <div class="tbgh">
+                    <div class="graph">
+                        <canvas id="semesterGraph" width="150" height="250"></canvas>
+                    </div>
+                    <div class="totalAver">
+                        <p>Overall Average: <span id="average">0</span></p>
+                        <p>Total Marks: <span id="total-marks">0</span></p>  
+                    </div>
+                    <div class="pie">
+                        <canvas id="classificationPieChart" width="200" height="200"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Achievements Section -->
+            <section id="achievements-section">
+                <div id="achievements">
+                    <h2>ACHIVEMENTS</h2>
+                    <hr>
+                    <ul id="achievement-list"></ul>
+                </div>                
+            </section>  
+
+            <!-- Goal Setting Section -->
+            <section id="goal-setting">
+                <h2>GOAL SETTING</h2>
+                <hr>
+                <div class="goal_calender">
+                    <div class="goal-container">
+                        <h3>Goal setting</h3>
+                        <div class="goal-input">
+                            <input type="text" id="goalInput" placeholder="Enter your goal">
+                            <button onclick="addGoal()"><i class='bx bxs-message-alt-add'></i></button>
+                        </div>
+                        <!-- Goal List Header Row -->
+                        <div class="goal-list-header">
+                            <div>Goal</div>
+                            <div>Update Progress</div>
+                            <div>Delete</div>
+                        </div>
+                        <!-- Goals List -->
+                        <ul id="goalList" class="goal-list"></ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <script src="script.js"></script>
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-section about">
+                    <h4>About Us</h4>
+                    <p>Genius Performance Analysis is dedicated to providing insights into student performance through data-driven analysis and career recommendations.
+                        It utilizes local storage as the database, ensuring that user data is stored exclusively on the user's device, making it accessible only to the user.
+                    </p>
+                </div>
+                
+                <div class="footer-section links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#privacy-policy">Privacy Policy</a></li>
+                        <li><a href="#terms-of-service">Terms of Service</a></li>
+                        <li><a href="#contact-us">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section connect">
+                    <h4>Connect with Us</h4>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/genius-kudzai" target="_blank"><i class="fab fa-linkedin"></i><i class='bx bxl-linkedin-square' ></i>Genius Kudzai</a></li>
+                        <li><a href="https://github.com/geniuskudzai21" target="_blank"><i class="fab fa-github"></i><i class='bx bxl-github' ></i>geniuskudzai21</a></li>
+                        <li><a href="https://wa.me/+263776398294" target="_blank"><i class="fab fa-whatsapp"></i><i class='bx bxl-whatsapp'></i>Genius</a></li>
+                        <li><a href="mailto:geniusboykanya@gmail.com"><i class="fas fa-envelope"></i><i class='bx bx-envelope' ></i>geniusboykanya@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Genius Performance Analysis. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </body>
+</html>
